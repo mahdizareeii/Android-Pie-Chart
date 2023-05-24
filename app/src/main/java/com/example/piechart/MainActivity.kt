@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity() {
                 PieItem(
                     20f,
                     Color.BLACK
+                ),
+                PieItem(
+                    90f,
+                    Color.RED
                 )
             )
         )
