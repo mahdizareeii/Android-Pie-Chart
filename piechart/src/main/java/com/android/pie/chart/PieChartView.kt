@@ -16,7 +16,7 @@ class PieChartView @JvmOverloads constructor(
 ) : View(context, attributeSet, defStyleAttr) {
 
     private var chartPadding = 20f
-    private var chartItemsPadding = 2f
+    private var chartItemsPadding = 1f
     private var chartStrokeWidth = 20f
     private val pieItems = ArrayList<PieItem>()
     private val paint = Paint()
