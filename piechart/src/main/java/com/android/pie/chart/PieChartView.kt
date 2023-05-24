@@ -51,15 +51,10 @@ class PieChartView @JvmOverloads constructor(
 
             //draw
             canvas?.drawArc(
-                //oval
                 getRecF(),
-                //startAngle
                 startAngle + getDp(chartItemsPadding),
-                //sweepAngle
                 sweepAngle - getDp(chartItemsPadding),
-                //useCenter
                 true,
-                //paint
                 paint
             )
 
