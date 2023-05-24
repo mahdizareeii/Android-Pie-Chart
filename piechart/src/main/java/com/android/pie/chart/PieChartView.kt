@@ -17,7 +17,7 @@ class PieChartView @JvmOverloads constructor(
 
     private var chartPadding = 20f
     private var chartItemsPadding = 2f
-    private var chartStrokeWidth = 8f
+    private var chartStrokeWidth = 20f
     private val pieItems = ArrayList<PieItem>()
     private val paint = Paint()
 
@@ -30,7 +30,7 @@ class PieChartView @JvmOverloads constructor(
         super.onDraw(canvas)
 
         //set style for draw pie items
-        paint.style = Paint.Style.STROKE
+        paint.style = Paint.Style.FILL
         paint.strokeWidth = getDp(chartStrokeWidth)
 
         //calculate the total value of all pies
@@ -52,18 +52,14 @@ class PieChartView @JvmOverloads constructor(
             //draw
             canvas?.drawArc(
                 getRecF(),
-                startAngle + getDp(chartItemsPadding),
-                sweepAngle - getDp(chartItemsPadding),
+                startAngle + getDp(chartItemsPadding / 2),
+                sweepAngle - getDp(chartItemsPadding / 2),
                 true,
                 paint
             )
 
             startAngle += sweepAngle
         }
-
-
-        //set style for hide the central lines
-        paint.style = Paint.Style.FILL
 
         //hide the central lines
         paint.color = Color.WHITE
