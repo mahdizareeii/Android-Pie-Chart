@@ -52,7 +52,7 @@ class PieChartView @JvmOverloads constructor(
             //draw
             canvas?.drawArc(
                 //draw oval margin
-                getRecF(),
+                getRectF(),
                 //start draw oval
                 startAngle + getDp(chartItemsPadding / 2),
                 //end draw oval
@@ -97,7 +97,7 @@ class PieChartView @JvmOverloads constructor(
         context.resources.displayMetrics
     )
 
-    private fun getRecF(): RectF {
+    private fun getRectF(): RectF {
         val padding = getDp(chartPadding)
         return RectF(
             padding, padding, width - padding, height - padding
