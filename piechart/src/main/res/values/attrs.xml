@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PieChartView">
+        <attr name="chartItemsPadding" format="dimension" />
+        <attr name="chartStrokeWidth" format="dimension" />
+        <attr name="chartStyle" format="enum">
+            <enum name="filled" value="1" />
+            <enum name="stroked" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>

@@ -15,15 +15,33 @@ class PieChartView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attributeSet, defStyleAttr) {
 
+    //1 filled style
+    //2 stroked style
+    private var chartStyle = 0
     private var chartPadding = 20f
-    private var chartItemsPadding = 1f
-    private var chartStrokeWidth = 20f
+    private var chartItemsPadding = 0f
+    private var chartStrokeWidth = 10f
     private val pieItems = ArrayList<PieItem>()
     private val paint = Paint()
 
     init {
-        //TODO get from attribute
         paint.isAntiAlias = true
+        val typedArray = context.theme.obtainStyledAttributes(
+            attributeSet,
+            R.styleable.PieChartView,
+            defStyleAttr,
+            0
+        )
+        try {
+            chartItemsPadding =
+                typedArray.getDimension(R.styleable.PieChartView_chartItemsPadding, 1f)
+            chartStrokeWidth =
+                typedArray.getDimension(R.styleable.PieChartView_chartStrokeWidth, 20f)
+
+            chartStyle = typedArray.getInt(R.styleable.PieChartView_chartStyle, 2)
+        } finally {
+            typedArray.recycle()
+        }
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -31,7 +49,7 @@ class PieChartView @JvmOverloads constructor(
 
         //set style for draw pie items
         paint.style = Paint.Style.FILL
-        paint.strokeWidth = getDp(chartStrokeWidth)
+        paint.strokeWidth = chartStrokeWidth
 
         //calculate the total value of all pies
         var totalValues = 0f
@@ -54,9 +72,9 @@ class PieChartView @JvmOverloads constructor(
                 //draw oval margin
                 getRectF(),
                 //start draw oval
-                startAngle + getDp(chartItemsPadding / 2),
+                startAngle + chartItemsPadding / 2,
                 //end draw oval
-                sweepAngle - getDp(chartItemsPadding / 2),
+                sweepAngle - chartItemsPadding / 2,
                 true,
                 paint
             )
@@ -65,13 +83,15 @@ class PieChartView @JvmOverloads constructor(
         }
 
         //hide the central lines
-        paint.color = Color.WHITE
-        canvas?.drawCircle(
-            (width / 2).toFloat(),
-            (height / 2).toFloat(),
-            (width.toFloat() / 2) - getPx(chartStrokeWidth) - getPx(getDp(chartPadding)),
-            paint
-        )
+        if (chartStyle == 2) {
+            paint.color = Color.WHITE
+            canvas?.drawCircle(
+                (width / 2).toFloat(),
+                (height / 2).toFloat(),
+                (width.toFloat() / 2) - getPx(chartStrokeWidth) - getPx(chartPadding),
+                paint
+            )
+        }
     }
 
     fun setPieItems(items: List<PieItem>) {
