@@ -16,6 +16,7 @@ class PieChartView @JvmOverloads constructor(
 ) : View(context, attributeSet, defStyleAttr) {
 
     private var chartPadding = 20f
+    private var chartItemsPadding = 2f
     private var chartStrokeWidth = 8f
     private val pieItems = ArrayList<PieItem>()
     private val paint = Paint()
@@ -49,7 +50,18 @@ class PieChartView @JvmOverloads constructor(
             paint.color = pie.color
 
             //draw
-            canvas?.drawArc(getRecF(), startAngle, sweepAngle, true, paint)
+            canvas?.drawArc(
+                //oval
+                getRecF(),
+                //startAngle
+                startAngle + getDp(chartItemsPadding),
+                //sweepAngle
+                sweepAngle - getDp(chartItemsPadding),
+                //useCenter
+                true,
+                //paint
+                paint
+            )
 
             startAngle += sweepAngle
         }
@@ -98,6 +110,7 @@ class PieChartView @JvmOverloads constructor(
         )
     }
 
+    //to make width and size of chart equal
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, widthMeasureSpec)
     }
