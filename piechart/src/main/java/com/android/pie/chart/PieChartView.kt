@@ -121,7 +121,7 @@ class PieChartView @JvmOverloads constructor(
         )
     }
 
-    //to make width and size of chart equal
+    //to make width and height of chart equal
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, widthMeasureSpec)
     }
