@@ -17,19 +17,19 @@ class MainActivity : AppCompatActivity() {
         chart?.setPieItems(
             listOf(
                 PieItem(
-                    50f,
+                    8500000f,
                     Color.YELLOW
                 ),
                 PieItem(
-                    30f,
+                    954000f,
                     Color.BLUE
                 ),
                 PieItem(
-                    20f,
+                    1000000f,
                     Color.BLACK
                 ),
                 PieItem(
-                    90f,
+                    540000f,
                     Color.RED
                 )
             )

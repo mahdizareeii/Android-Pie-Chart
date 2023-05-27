@@ -19,7 +19,7 @@ class PieChartView @JvmOverloads constructor(
     private val filledStyle = 1
     private val strokedStyle = 2
     private var chartStyle = 0
-    private var chartPadding = 20f
+    private var chartPadding = 5f
     private var chartItemsPadding = 0f
     private var chartStrokeWidth = 10f
     private val pieItems = ArrayList<PieItem>()
@@ -38,7 +38,6 @@ class PieChartView @JvmOverloads constructor(
                 typedArray.getDimension(R.styleable.PieChartView_chartItemsPadding, 1f)
             chartStrokeWidth =
                 typedArray.getDimension(R.styleable.PieChartView_chartStrokeWidth, 20f)
-
             chartStyle = typedArray.getInt(R.styleable.PieChartView_chartStyle, 2)
         } finally {
             typedArray.recycle()
@@ -89,7 +88,7 @@ class PieChartView @JvmOverloads constructor(
             canvas?.drawCircle(
                 (width / 2).toFloat(),
                 (height / 2).toFloat(),
-                (width.toFloat() / 2) - getPx(chartStrokeWidth) - getPx(chartPadding),
+                (width.toFloat() / 2) - getDp(chartStrokeWidth) - getDp(chartPadding),
                 paint
             )
         }
