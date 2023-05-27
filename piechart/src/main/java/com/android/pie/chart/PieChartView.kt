@@ -52,10 +52,7 @@ class PieChartView @JvmOverloads constructor(
         paint.strokeWidth = chartStrokeWidth
 
         //calculate the total value of all pies
-        var totalValues = 0f
-        for (pie in pieItems) {
-            totalValues += abs(pie.value)
-        }
+        val totalValues = pieItems.map { abs(it.value) }.sum()
 
         //set start angle for first pie
         var startAngle = 0f
