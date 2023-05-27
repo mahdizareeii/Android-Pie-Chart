@@ -8,6 +8,7 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import kotlin.math.abs
 
 class PieChartView @JvmOverloads constructor(
     context: Context,
@@ -54,7 +55,7 @@ class PieChartView @JvmOverloads constructor(
         //calculate the total value of all pies
         var totalValues = 0f
         for (pie in pieItems) {
-            totalValues += pie.value.takeIf { it >= 0 } ?: (pie.value * -1)
+            totalValues += abs(pie.value)
         }
 
         //set start angle for first pie
