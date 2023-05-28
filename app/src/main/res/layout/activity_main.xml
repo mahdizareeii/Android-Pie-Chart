@@ -13,7 +13,7 @@
         app:chartItemsPadding="1dp"
         app:chartPadding="8dp"
         app:chartStrokeWidth="2dp"
-        app:chartStyle="filled"
+        app:chartStyle="outlined"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

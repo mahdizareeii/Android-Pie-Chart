@@ -17,7 +17,7 @@ class PieChartView @JvmOverloads constructor(
 ) : View(context, attributeSet, defStyleAttr) {
 
     private val filledStyle = 1
-    private val strokedStyle = 2
+    private val outlinedStyle = 2
     private var chartStyle = 0
     private var chartPadding = 5f
     private var chartItemsPadding = 0f
@@ -82,7 +82,7 @@ class PieChartView @JvmOverloads constructor(
         }
 
         //hide the central lines
-        if (chartStyle == strokedStyle) {
+        if (chartStyle == outlinedStyle) {
             paint.color = Color.WHITE
             canvas?.drawCircle(
                 (width / 2).toFloat(),
