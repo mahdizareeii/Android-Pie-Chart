@@ -34,6 +34,8 @@ class PieChartView @JvmOverloads constructor(
             0
         )
         try {
+            chartPadding =
+                typedArray.getDimension(R.styleable.PieChartView_chartPadding, 5f)
             chartItemsPadding =
                 typedArray.getDimension(R.styleable.PieChartView_chartItemsPadding, 1f)
             chartStrokeWidth =
