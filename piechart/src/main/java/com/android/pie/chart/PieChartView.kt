@@ -61,6 +61,7 @@ class PieChartView @JvmOverloads constructor(
 
         //iterate over pie item and draw each one
         for (pie in pieItems) {
+            if (pie.value == 0.0f) continue
             val sweepAngle = (pie.value / totalValues) * 360
 
             //set color of the pie
