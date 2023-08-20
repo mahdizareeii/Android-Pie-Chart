@@ -8,12 +8,13 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import com.jabama.android.chartview.R
 import kotlin.math.abs
 
 class PieChartView @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : View(context, attributeSet, defStyleAttr) {
 
     private val filledStyle = 1
@@ -59,29 +60,43 @@ class PieChartView @JvmOverloads constructor(
         //set start angle for first pie
         var startAngle = 0f
 
-        //iterate over pie item and draw each one
-        for (pie in pieItems) {
-            if (pie.value == 0.0f) continue
-            val sweepAngle = (pie.value / totalValues) * 360
-
-            if (pie.value == totalValues) chartItemsPadding = 0f
-
-            //set color of the pie
-            paint.color = pie.color
-
-            //draw
+        if (pieItems.size == 1) {
+            paint.color = pieItems[0].color
             canvas?.drawArc(
                 //draw oval margin
                 getRectF(),
                 //start draw oval
-                startAngle + chartItemsPadding,
+                startAngle,
                 //end draw oval
-                sweepAngle - chartItemsPadding,
+                (pieItems[0].value / totalValues) * 360,
                 true,
                 paint
             )
+        } else {
+            //iterate over pie item and draw each one
+            for (pie in pieItems) {
+                if (pie.value == 0.0f) continue
+                val chartItemPadding = if (pie.value == totalValues) 0.0f else chartItemsPadding
 
-            startAngle += sweepAngle
+                val sweepAngle = (pie.value / totalValues) * 360
+
+                //set color of the pie
+                paint.color = pie.color
+
+                //draw
+                canvas?.drawArc(
+                    //draw oval margin
+                    getRectF(),
+                    //start draw oval
+                    startAngle + chartItemPadding,
+                    //end draw oval
+                    sweepAngle - chartItemPadding,
+                    true,
+                    paint
+                )
+
+                startAngle += sweepAngle
+            }
         }
 
         //hide the central lines
