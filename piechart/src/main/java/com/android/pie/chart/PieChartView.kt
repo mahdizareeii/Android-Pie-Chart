@@ -37,7 +37,7 @@ class PieChartView @JvmOverloads constructor(
             chartPadding =
                 typedArray.getDimension(R.styleable.PieChartView_chartPadding, 5f)
             chartItemsPadding =
-                typedArray.getDimension(R.styleable.PieChartView_chartItemsPadding, 1f)
+                typedArray.getDimension(R.styleable.PieChartView_chartItemsPadding, 1f) / 2
             chartStrokeWidth =
                 typedArray.getDimension(R.styleable.PieChartView_chartStrokeWidth, 20f)
             chartStyle = typedArray.getInt(R.styleable.PieChartView_chartStyle, 2)
@@ -64,6 +64,8 @@ class PieChartView @JvmOverloads constructor(
             if (pie.value == 0.0f) continue
             val sweepAngle = (pie.value / totalValues) * 360
 
+            if (pie.value == totalValues) chartItemsPadding = 0f
+
             //set color of the pie
             paint.color = pie.color
 
@@ -72,9 +74,9 @@ class PieChartView @JvmOverloads constructor(
                 //draw oval margin
                 getRectF(),
                 //start draw oval
-                startAngle + chartItemsPadding / 2,
+                startAngle + chartItemsPadding,
                 //end draw oval
-                sweepAngle - chartItemsPadding / 2,
+                sweepAngle - chartItemsPadding,
                 true,
                 paint
             )
